@@ -20,7 +20,7 @@ object ValidatorImplicitSyntax {
     // instead import your implicits and syntax sugar where needed
 
 
-    // import PredefinedValidators.intValidator
+    // import PredefinedValidators.positiveIntValidator
     // import ValidatorImplicitSyntax.IntValidatorSyntax
     // 4.validate
   }
