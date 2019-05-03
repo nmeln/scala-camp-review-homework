@@ -63,6 +63,8 @@ object ValidatorData {
   implicit val customBigDecimalValidator: Validator[BigDecimal] =
     (value: BigDecimal) => Either.cond(value.isWhole(), value, "It's not whole")
 
+
+  // more advanced validator
   implicit def listValidator[B](implicit validator: Validator[B]): Validator[List[B]] = new Validator[List[B]] {
     override def validate(list: List[B]): Either[String, List[B]] = {
       val validationErrors = list.filter(_.validate.isLeft)
@@ -84,11 +86,14 @@ object SyntaxTypeClassApp {
 
     val wholeList: List[BigDecimal] = List(BigDecimal("1"), BigDecimal("56"), BigDecimal("324"))
     val mixedList: List[BigDecimal] = List(BigDecimal("1"), BigDecimal("0.11"), BigDecimal("123"), BigDecimal("0.12"))
+    val intList: List[Int] = List(-5, -11, 64)
 
     println(whole.validate)
     println(notWhole.validate)
 
     println(wholeList.validate)
     println(mixedList.validate)
+
+    println(intList.validate)
   }
 }
